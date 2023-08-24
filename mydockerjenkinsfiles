@@ -20,17 +20,16 @@ pipeline{
       stage('codeQuality'){
       steps{
         sh "echo Running detail code analysis"
-      // sh "mvn sonar:sonar"
+        sh "mvn sonar:sonar"
         sh  "echo All conditions met/passed"
       }
     }
      stage('upLoadArtifacts'){
      steps{
         sh "echo Running detail code analysis"
-    //  sh "mvn deploy"
+      sh "mvn deploy"
         sh "echo backupArtifacts in nexus"
-        //
-      }
+       }
     }
      stage('message'){
     steps{
@@ -45,7 +44,7 @@ pipeline{
       stage('predeployment'){
     steps{
         sh "docker build -t attahboy/dockerdemo-web-app:1.0 ."
-        sh "docker login -u attahboy -p Akumago0405 docker.io"
+        sh "docker login -u attahboy -p Akumag docker.io"
         sh "docker push attahboy/dockerdemo-web-app:1.0"
   }
       }
